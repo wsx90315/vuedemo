@@ -5,20 +5,22 @@
             <link rel="stylesheet" href="http://davidtkatz.com/public_css/vue.css">
             <body>
             <div id="app">
-                <div
-                 v-bind:title="randNum"
-                 v-if="shown"
-                >
-                Hover over me for your random number
-                </div>
+                <span> Change the texT</span>
+                <input v-model="text" placeholder="text...." /> 
+                <div>Lowercased : {{lowerText}}</div>
             </div>
             </body>
             <script>
+               
                 var app =new Vue({
                     el:'#app',
                     data:{
-                        randNum: Math.floor(Math.random() * 50) + 1,
-                        shown:false
+                        text:''
+                    },
+                    computed:{
+                        lowerText(){
+                           return this.text.toLowerCase()
+                        }
                     }
                 })
             </script>
