@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
         <head>
             <title>Vue App</title>
@@ -6,10 +5,8 @@
             <link rel="stylesheet" href="http://davidtkatz.com/public_css/vue.css">
             <body>
             <div id="app">
-                <div class="">
-                    Count:{{count}}
-                </div>
-                <button class="vue-btn" @click="increment">increment</button>
+               <p>{{message}}</p>
+               <button class="vue-btn" @click="reverseMessage">reversemessage</button>
             </div>
             </body>
             <script>
@@ -17,16 +14,14 @@
                 var app =new Vue({
                     el:'#app',
                     data:{
-                     count :0
+                        message :'Hello Vue.js'
                     },
                     methods:{
-                       increment(){
-                           this.count++
-                       }
-                    },
-                    updated(){
-                        console.log('this.Count',this.count)
+                        reverseMessage(){
+                            this.message = this.message.split('').reverse().join('')
+                        }
                     }
+               
                 })
             </script>
         </head>
