@@ -4,9 +4,8 @@
             <script src="https://cdn.jsdelivr.net/npm/vue"></script>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-            <link rel="stylesheet" href="http://davidtkatz.com/public_css/vue.css">
-            
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+            <link rel="stylesheet" href="http://davidtkatz.com/public_css/noteMaster.css"> 
             <body>
             <div id="app">
                 <h3>{{title}}</h3>
@@ -24,8 +23,9 @@
                     <button class="btn btn-primary" @click="addNote">submit</button>
                 </div>
                 <div class="col-sm-12">
-                    <div class="col-sm-4 note" v-for="note in notes">
+                    <div class="col-sm-4 note" v-for="(note,index) in notes">
                         <div class="card">
+                            <button class="close" @click="removeNote(index)">&times;</button>
                             <div class="card-block">
                                 <h4 class="card-title">{{note.title}}</h4>
                                 <h6 class="card-subtitle mb-2 text-muted">{{note.date}}</h6>
@@ -54,7 +54,14 @@
                    methods:{
                        addNote(){
                            let{ text, title}= this.note
-                           this.notes.push({text,title,date:new Date(Date.now()).toLocaleString()})
+                           this.notes.push({
+                               text,
+                               title,
+                               date:new Date(Date.now()).toLocaleString()
+                            })
+                       },
+                       removeNote(index){
+                           this.notes.splice(index, 1)
                        }
                    }
                 })
